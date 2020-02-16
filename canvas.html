@@ -1,0 +1,28 @@
+<script src = "https://cdn.jsdelivr.net/npm/vue"></script>
+
+<div id="app">
+<h1>{{title}}</h1>
+<canvas id="appCanvas" @touchstart.prevent=touchStart @touchmove.prevent=touchMove @touchend.prevent=touchEnd></canvas><br>
+<button @click="addRect">add rectangle</button>
+<ol>
+    <li v-for="(r,i) in rectangles">
+        <table>
+            <tr>
+                <th>x</th>
+                <th>y</th>
+                <th>w</th>
+                <th>h</th>
+            </tr>
+            <tr>
+                <td v-for="value in r.args">{{value|round}}</td>
+            </tr>
+        </table>
+        <button @click="removeRect(i)">remove</button>
+        <button @click="toLeft(i)">left</button>
+        <button @click="toRight(i)">right</button>
+        <button @click="toUp(i)">up</button>
+        <button @click="toDown(i)">down</button>
+        <input type="color" v-model=r.color @change="draw">
+    </li>
+</ol>
+</div>
